@@ -37,7 +37,7 @@ This project provides weather alerts via SMS. It uses the OpenWeatherMap API to 
     ```
 
 ## 📲 SMS Sample:
-<img src="preview.png" alt="Weather Alert Example" width="600"/>
+<img src="preview.jpg" alt="Weather Alert Example" width="600"/>
 
 ## 🛡 License
 
