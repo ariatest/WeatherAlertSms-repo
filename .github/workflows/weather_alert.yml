@@ -1,0 +1,30 @@
+name: Daily Weather Alert
+
+on:
+  schedule:
+    - cron: "0 6 * * *"  # هر روز ساعت ۶ صبح UTC (حدود ۱۰:۳۰ صبح ایران)
+  workflow_dispatch:  # امکان اجرای دستی از طریق GitHub UI
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run weather alert script
+        run: |
+          python rain_alert.py
+        env:
+          OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
+          IPPANEL_API_KEY: ${{ secrets.IPPANEL_API_KEY }}
+          RECIPIENT_NUMBER: ${{ secrets.RECIPIENT_NUMBER }}
